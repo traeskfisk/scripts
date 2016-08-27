@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This script will check if the .onion is up.
 # If the .onion is up it will be written to websites.txt with url + title.
 # For example: 
@@ -15,7 +16,7 @@ proxies = {
 # Send valid tor user agent, just in case.
 headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:31.0) Gecko/20100101 Firefox/31.0'
-        }'
+        }
       
 # Connect to .onion
 print "[+] Starting"
