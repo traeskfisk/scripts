@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This script will check if the .onion is up.
+# This script will check if the .onion is up. The specified onions to check have to be in urls.txt
 # If the .onion is up it will be written to websites.txt with url + title.
 # For example: 
 # $ cat websites.txt 
