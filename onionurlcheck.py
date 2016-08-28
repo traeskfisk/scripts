@@ -29,9 +29,8 @@ def crawl():
             try:
                 rStatus = requests.get(url, headers=headers, proxies=proxies).status_code
                 print rStatus
-                if rStatus == 200:
-                    if url in open('websites.txt').read():
-                        print "[-] URL Already in the document.\n"
+                if rStatus == 200:             
+                    
                     rTitle = requests.get(url, headers=headers, proxies=proxies)
                     title = rTitle.text
                     if '<TITLE>' in rTitle.text:
@@ -41,6 +40,7 @@ def crawl():
                         title = title.encode('UTF-8')
                         with open('websites.txt', 'a') as f:
                             f.write(url + ' - ' + title + '\n')
+                            print "[+] Saved URL\n"
                     elif '<title>' in rTitle.text:
                         title = title.split('<title>')[1]
                         title = title.split('</title>')[0]
@@ -48,12 +48,13 @@ def crawl():
                         title = title.encode('UTF-8')
                         with open('websites.txt', 'a') as f:
                             f.write(url + ' - ' + title + '\n')
+                            print "[+] Saved URL\n"
                     else:
                         print "[+] Did not find title element"
                         with open('websites.txt', 'a') as f:
                             f.write(url + ' - No title found' + '\n')
-                        print "[+] Saved URL\n"
+                            print "[+] Saved URL\n"
             except:
                 print "[-] Could not find %s\n" % url
 
-crawl()[
+crawl()
