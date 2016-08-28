@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This script will check if the .onion is up. The specified onions to check have to be in urls.txt
+# This script will check if the .onion is up.
 # If the .onion is up it will be written to websites.txt with url + title.
 # For example: 
 # $ cat websites.txt 
@@ -25,7 +25,7 @@ def crawl():
     with open('urls.txt') as fn:
         for line in fn:
             url = line.strip('\n')
-            print "[+] Connecting to %s \n" % url
+            print "[+] Connecting to %s" % url
             try:
                 rStatus = requests.get(url, headers=headers, proxies=proxies).status_code
                 print rStatus
@@ -44,15 +44,18 @@ def crawl():
                         title = title.encode('UTF-8')
                     else:
                         print "[+] Did not find title element"
-                    print title
-                    if title in open('websites.txt').read():
+                        with open('websites.txt', 'a') as f:
+                            f.write(url + ' - No title found' + '\n')
+                        print "[+] Saved URL"
+                   
+                    if url in open('websites.txt').read():
                         print "[+] Already in the document."
                     else:
                         print "[+] Saving"
                         with open('websites.txt', 'a') as f:
-                            f.write(url + title + '\n')
+                            f.write(url + ' - '  +title + '\n')
                         print '[+] Saved URL'
             except:
-                print "[-] Could not find %s" % url
+                print "[-] Could not find %s\n" % url
 
 crawl()
