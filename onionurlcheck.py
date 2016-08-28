@@ -3,7 +3,7 @@
 # If the .onion is up it will be written to websites.txt with url + title.
 # For example: 
 # $ cat websites.txt 
-# http://swehackmzys2gpmb.onion/swehack - Ett svenskt diskussionsforum om IT-säkerhet - Index
+# http://swehackmzys2gpmb.onion/ swehack - Ett svenskt diskussionsforum om IT-säkerhet - Index
 
 import requests
 
