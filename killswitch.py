@@ -1,34 +1,34 @@
 # This will check if you are connected to desired IP.
-# If you are not connected to the IP the script will shut the PC down.
+# If you are not connected to the IP the script will kill your internet connection.
 
 import requests
-import time
 import subprocess
+import time
 
-url = "https://api.ipify.org?format=json"
-q = requests.get(url)
+ipget = "https://api.ipify.org?format=json"
+q = requests.get(ipget)
 ip = q.text
 ip = ip.split(':')[1]
 ip = ip.split('"')[1]
 ip = ip.strip()
 
-vpn = "46.227.67.168"
-
 def check():
-    print "Sending request"
     try:
-        ip
-        if ip == vpn:
-            print "Connected to VPN, no need to kill myself."
-            print "Checking again in 5 seconds"
-            print "Going to sleep\n"
+        x = subprocess.check_output('whois '+ip, shell=True)
+        vpn = x
+    
+        if "OVPN-SE-NET" in vpn: # Substitute to your VPN provider.
+            print "Connected to VPN."
+            print "No need to kill internet connection."
+            print "Going to sleep for 5 seconds before checking again.\n"
             time.sleep(5)
         else:
-            print "Not connected to VPN. Gonna kill myself."
-            x = subprocess.call('shutdown now', shell=True)
-            exit(1)
+            print "Not connected to VPN."
+            print "Killing internet connection."
+            z = subprocess.call('wall "Internet connection killed, VPN down."', shell=True)
+            y = subprocess.call('ifconfig wlp2s0 down', shell=True) # Change wlp2s0 to your interface.
     except:
-        x = subprocess.call('shutdown now', shell=True)
-        exit(1)
+        pass
+
 while (1):
     check()
