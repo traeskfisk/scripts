@@ -1,3 +1,6 @@
+# This will check if you are connected to desired IP.
+# If you are not connected to the IP the script will shut the PC down.
+
 import requests
 import time
 import subprocess
