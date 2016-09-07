@@ -16,17 +16,17 @@ def check():
     try:
         x = subprocess.check_output('whois '+ip, shell=True)
         vpn = x
-    
         if "OVPN-SE-NET" in vpn: # Substitute to your VPN provider.
             print "Connected to VPN."
             print "No need to kill internet connection."
-            print "Going to sleep for 5 seconds before checking again.\n"
-            time.sleep(5)
+            print "Going to sleep for 2 seconds before checking again.\n"
+            time.sleep(2)
         else:
             print "Not connected to VPN."
             print "Killing internet connection."
             z = subprocess.call('wall "Internet connection killed, VPN down."', shell=True)
             y = subprocess.call('ifconfig wlp2s0 down', shell=True) # Change wlp2s0 to your interface.
+            exit(1)
     except:
         pass
 
