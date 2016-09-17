@@ -32,7 +32,7 @@ def check():
     except:
         print "Something went wrong."
         print "Shutting down internet to be on the safe side \n."
-        z = subprocess.call('wall "Internet connection killed, something went wrong.", shell=True)
+        z = subprocess.call('wall "Internet connection killed, something went wrong."', shell=True)
         y = subprocess.call('ifconfig wlp2s0 down', shell=True) # Change wlp2s0 to your interface.
         os._exit(1) 
 
